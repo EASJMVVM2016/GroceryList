@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="GroceryList.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GroceryList"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:GroceryList.ViewModel"
+    xmlns:vmcm="using:GroceryList.ViewModel.Commands"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:MainViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/LightPaperText.jpg">
+            </ImageBrush>
+        </Grid.Background>
+        <Grid Background="#ffffcc" HorizontalAlignment="Left" Height="594" Margin="55,84,0,0" VerticalAlignment="Top" Width="432">
+        </Grid>
+        <ListView x:Name="grocListView" HorizontalAlignment="Left" Height="594" Margin="55,84,0,0" VerticalAlignment="Top" Width="432" BorderBrush="#ffe699" BorderThickness="2" ItemsSource="{Binding GrocList, Mode=TwoWay}" SelectedItem="{Binding SelectedGrocItem, Mode=TwoWay}" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="0, -5, 0, -5" />
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        <TextBlock x:Name="listViewTitel" HorizontalAlignment="Left" Margin="55,23,0,0" TextWrapping="Wrap" Text="Grocery List" TextAlignment="Center" VerticalAlignment="Top" Width="432" Height="38" FontSize="24"/>
+        <Button x:Name="saveBtn" Content="Save!" HorizontalAlignment="Left" Margin="55,685,0,0" VerticalAlignment="Top" Width="200" Height="35" BorderBrush="#ffe699" Command="{Binding SaveListCommand}"/>
+        <Button x:Name="getBtn" Content="Load!" HorizontalAlignment="Left" Margin="287,685,0,0" VerticalAlignment="Top" Width="200" Height="35" BorderBrush="#ffe699" Command="{Binding LoadListCommand}"/>
+        <TextBox x:Name="itemTxtBox" HorizontalAlignment="Left" Margin="495,600,0,0" TextWrapping="Wrap" Text="{Binding NewGrocItem.grocItem, Mode=TwoWay}" VerticalAlignment="Top" Width="165" FontSize="18" PlaceholderText="Grocery Item"/>
+        <TextBox x:Name="qntyTxtBox" HorizontalAlignment="Left" Margin="665,600,0,0" TextWrapping="Wrap" Text="{Binding NewGrocItem.itemQnty, Mode=TwoWay}" VerticalAlignment="Top" Width="75" FontSize="18" PlaceholderText="Qnty"/>
+        <Button x:Name="addBtn" Content="Add" HorizontalAlignment="Left" Margin="495,641,0,0" VerticalAlignment="Top" Width="165" Background=" #80ff80" Command="{Binding AddItemCommand}"/>
+        <Button x:Name="rmvBtn" Content="Remove" HorizontalAlignment="Left" Margin="665,641,0,0" VerticalAlignment="Top" Width="75" Background="#ff8080" Command="{Binding RemoveItemCommand}"/>
+        <TextBlock x:Name="OutputToUserTxt" HorizontalAlignment="Left" Margin="495,685,0,0" TextWrapping="Wrap" Text="{Binding OutputToUser}" VerticalAlignment="Top" Height="35" Width="245" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="clearBtn" Content="Clear List" HorizontalAlignment="Left" Margin="495,547,0,0" VerticalAlignment="Top"  Width="245" Height="35" Command="{Binding ClearListCommand}"/>
+
+    </Grid>
+</Page>
